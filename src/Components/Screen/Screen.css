@@ -1,0 +1,9 @@
+.screen-small {
+    background-color: rgb(187, 251, 187);
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    text-align:center
+}
