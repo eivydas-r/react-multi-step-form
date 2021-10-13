@@ -21,6 +21,12 @@ const updateDataReducer = (state = initialState, action) => {
         case "UPDATE_PHONE":
             state.phoneNumber = action.payload;
             return state;
+        case "UPDATE_USER":
+            state.userName = action.payload;
+            return state;
+        case "UPDATE_PASS":
+            state.password = action.payload;
+            return state;
         default:
             return state;
     }

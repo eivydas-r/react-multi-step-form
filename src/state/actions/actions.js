@@ -17,20 +17,38 @@ export const updateLastName = (name) => {
     }
 }
 
-export const updateEmail = (name) => {
+export const updateEmail = (data) => {
     return (dispatch) => {
             dispatch({
             type: "UPDATE_EMAIL",
-            payload: name
+            payload: data
         })
     }
 }
 
-export const updatePhone = (name) => {
+export const updatePhone = (data) => {
     return (dispatch) => {
             dispatch({
             type: "UPDATE_PHONE",
-            payload: name
+            payload: data
+        })
+    }
+}
+
+export const updateUsername = (data) => {
+    return (dispatch) => {
+            dispatch({
+            type: "UPDATE_USER",
+            payload: data
+        })
+    }
+}
+
+export const updatePassword = (data) => {
+    return (dispatch) => {
+            dispatch({
+            type: "UPDATE_PASS",
+            payload: data
         })
     }
 }

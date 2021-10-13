@@ -5,25 +5,23 @@ import './Step3.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/exportActions'
-import App from '../../App';
+import { store } from '../../state/store';
 
 function Step3(props) {
-    const state = useSelector((state) => state.step1);
-    console.log("state");
-    console.log(state);
+    console.log(store.getState());
   
     const dispatch = useDispatch();
-    const { updateFirstName, updateLastName } = bindActionCreators(actionCreators, dispatch);
+    const { updateUsername, updatePassword } = bindActionCreators(actionCreators, dispatch);
+
+    const usernameInput = React.createRef();
+    const passwordInput = React.createRef();
 
     const handleInput = () => {
-        updateFirstName('Jones'); // redux
-        var input = this.firstName.current.value;
-        var input2 = this.lastName.current.value;
-        console.log(input);
-        this.setState((prevState) => ({
-             firstName: input,
-             lastName: input2
-        }));
+        var input1 = usernameInput.current.value;
+        var input2 = passwordInput.current.value;
+
+        updateUsername(input1);
+        updatePassword(input2);
     }
 
     return (
@@ -34,18 +32,18 @@ function Step3(props) {
                     <form className="form">
                         <label style={{fontSize: "20px"}}>
                             Username: 
-                            <input style={{marginLeft: "10px"}} type="text" name="firstName"/>
+                            <input style={{marginLeft: "10px"}} type="text" name="firstName" ref={usernameInput} defaultValue={store.getState().updateData.userName}/>
                         </label>
                         <label style={{fontSize: "20px"}}>
                             Password: 
-                            <input style={{marginLeft: "10px"}} type="text" name="lastName"/>
+                            <input style={{marginLeft: "10px"}} type="text" name="lastName" ref={passwordInput} defaultValue={store.getState().updateData.password}/>
                         </label>
                         <br/>
                         <Link to="/steps/2">
-                            <input className="btn btn-success" style={{fontSize: "20px", marginTop: "10px", backgroundColor:"gray", marginRight:"10px"}} type="submit" value="Back"/>
+                            <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px", backgroundColor:"gray", marginRight:"10px"}} type="submit" value="Back"/>
                         </Link>
                         <Link to="/steps/3">
-                            <input className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
+                            <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
                         </Link>
                     </form>
                 </div>
