@@ -6,3 +6,9 @@
 .form {
     margin-top: 30px;
 }
+
+#formItem label {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+}

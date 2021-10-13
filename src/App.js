@@ -10,6 +10,7 @@ import { actionCreators } from './state/exportActions'
 import Step3 from './Components/Step3/Step3';
 
 function App() {
+  document.title = "Multi-step Form by Eivydas"
 
   return (
     // Create Multi step form

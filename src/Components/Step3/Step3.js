@@ -43,10 +43,13 @@ function Step3(props) {
                             <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px", backgroundColor:"gray", marginRight:"10px"}} type="submit" value="Back"/>
                         </Link>
                         <Link to="/steps/3">
-                            <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
+                            <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Submit"/>
                         </Link>
                     </form>
                 </div>
+                <Link to="/">
+                    <button className="btn btn-primary" style={{marginTop:'25px', fontSize: '20px'}}>Back to start</button>
+                </Link>
             </Screen>
     );
 }

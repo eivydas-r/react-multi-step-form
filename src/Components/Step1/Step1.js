@@ -45,6 +45,9 @@ function Step1(props) {
                     </Link>
                 </form>
             </div>
+            <Link to="/">
+                <button className="btn btn-primary" style={{marginTop:'25px', fontSize: '20px'}}>Back to start</button>
+            </Link>
         </Screen>
     );
 }
