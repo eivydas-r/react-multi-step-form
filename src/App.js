@@ -7,6 +7,7 @@ import Step2 from './Components/Step2/Step2';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from './state/exportActions'
+import Step3 from './Components/Step3/Step3';
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route path="/steps/2">
           <Step2/>
+        </Route>
+        <Route path="/steps/3">
+          <Step3/>
         </Route>
       </Switch>
     </Router>

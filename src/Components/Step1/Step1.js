@@ -5,7 +5,6 @@ import './Step1.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/exportActions'
-import App from '../../App';
 import { store } from '../../state/store';
 
 function Step1(props) {

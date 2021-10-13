@@ -5,25 +5,23 @@ import './Step2.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/exportActions'
-import App from '../../App';
+import { store } from '../../state/store';
 
 function Step2(props) {
-    const state = useSelector((state) => state.step1);
-    console.log("state");
-    console.log(state);
+    console.log(store.getState());
   
     const dispatch = useDispatch();
-    const { updateFirstName, updateLastName } = bindActionCreators(actionCreators, dispatch);
+    const { updateEmail, updatePhone } = bindActionCreators(actionCreators, dispatch);
+
+    const emailInput = React.createRef();
+    const phoneInput = React.createRef();
 
     const handleInput = () => {
-        updateFirstName('Jones'); // redux
-        var input = this.firstName.current.value;
-        var input2 = this.lastName.current.value;
-        console.log(input);
-        this.setState((prevState) => ({
-             firstName: input,
-             lastName: input2
-        }));
+        var input1 = emailInput.current.value;
+        var input2 = phoneInput.current.value;
+
+        updateEmail(input1);
+        updatePhone(input2);
     }
 
     return (
@@ -34,18 +32,18 @@ function Step2(props) {
                     <form className="form">
                         <label style={{fontSize: "20px"}}>
                             Email: 
-                            <input style={{marginLeft: "10px"}} type="text" name="firstName"/>
+                            <input style={{marginLeft: "10px"}} type="text" name="firstName" ref={emailInput} defaultValue={store.getState().updateData.email}/>
                         </label>
                         <label style={{fontSize: "20px"}}>
                             Phone: 
-                            <input style={{marginLeft: "10px"}} type="text" name="lastName"/>
+                            <input style={{marginLeft: "10px"}} type="text" name="lastName" ref={phoneInput} defaultValue={store.getState().updateData.phoneNumber}/>
                         </label>
                         <br/>
                         <Link to="/steps/1">
-                            <input className="btn btn-success" style={{fontSize: "20px", marginTop: "10px", backgroundColor:"gray", marginRight:"10px"}} type="submit" value="Back"/>
+                            <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px", backgroundColor:"gray", marginRight:"10px"}} type="submit" value="Back"/>
                         </Link>
-                        <Link to="/steps/2">
-                            <input className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
+                        <Link to="/steps/3">
+                            <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
                         </Link>
                     </form>
                 </div>
