@@ -6,56 +6,47 @@ import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/exportActions'
 import App from '../../App';
+import { store } from '../../state/store';
 
+function Step1(props) {
+    console.log(store.getState());
+  
+    const dispatch = useDispatch();
+    const { updateFirstName, updateLastName } = bindActionCreators(actionCreators, dispatch);
 
-class Step1 extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleInput = this.handleInput.bind(this);
-        this.firstName = React.createRef();
-        this.lastName = React.createRef();
-        this.state = {
-            firstName: '',
-            lastName: ''
-        }
+    const firstNameInput = React.createRef();
+    const lastNameInput = React.createRef();
+
+    const handleInput = () => {
+        var input1 = firstNameInput.current.value;
+        var input2 = lastNameInput.current.value;
+
+        updateFirstName(input1);
+        updateLastName(input2);
+        //store.dispatch({ type: "UPDATE_FIRST"}, 'jim')
     }
 
-    handleInput = () => {
-        var input = this.firstName.current.value;
-        var input2 = this.lastName.current.value;
-        console.log(input);
-        this.setState((prevState) => ({
-             firstName: input,
-             lastName: input2
-        }));
-    }
-    
-   
-    render() { 
-        console.log(this.state);
+    return (
         // Step 1: Enter firstName, lastName
-        return (
-            <Screen>
-                <div className="main">
-                    <h1 style={{marginLeft:"0px"}}>Step 1:</h1>
-                    <form className="form">
-                        <label style={{fontSize: "20px"}}>
-                            First name: 
-                            <input style={{marginLeft: "10px"}} type="text" name="firstName" ref={this.firstName} defaultValue={this.state.firstName}/>
-                        </label>
-                        <label style={{fontSize: "20px"}}>
-                            Last name: 
-                            <input style={{marginLeft: "10px"}} type="text" name="lastName" ref={this.lastName} defaultValue={this.state.lastName}/>
-                        </label>
-                        <br/>
-                        <Link to="/steps/2">
-                            <input onClick={this.handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
-                        </Link>
-                    </form>
-                </div>
-            </Screen>
-        );
-    }
+        <Screen>
+            <div className="main">
+                <h1 style={{marginLeft:"0px"}}>Step 1:</h1>
+                <form className="form">
+                    <label style={{fontSize: "20px"}}>
+                        First name: 
+                        <input style={{marginLeft: "10px"}} type="text" name="firstName" ref={firstNameInput} defaultValue={store.getState().updateData.firstName}/>
+                    </label>
+                    <label style={{fontSize: "20px"}}>
+                        Last name: 
+                        <input style={{marginLeft: "10px"}} type="text" name="lastName" ref={lastNameInput} defaultValue={store.getState().updateData.lastName}/>
+                    </label>
+                    <br/>
+                    <Link to="/steps/2">
+                        <input onClick={handleInput} className="btn btn-success" style={{fontSize: "20px", marginTop: "10px"}} type="submit" value="Next"/>
+                    </Link>
+                </form>
+            </div>
+        </Screen>
+    );
 }
- 
 export default Step1;

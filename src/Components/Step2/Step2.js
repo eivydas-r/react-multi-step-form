@@ -1,13 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Screen from '../Screen/Screen';
 import './Step2.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/exportActions'
+import App from '../../App';
 
-class Step2 extends React.Component {
-    render() { 
+function Step2(props) {
+    const state = useSelector((state) => state.step1);
+    console.log("state");
+    console.log(state);
+  
+    const dispatch = useDispatch();
+    const { updateFirstName, updateLastName } = bindActionCreators(actionCreators, dispatch);
+
+    const handleInput = () => {
+        updateFirstName('Jones'); // redux
+        var input = this.firstName.current.value;
+        var input2 = this.lastName.current.value;
+        console.log(input);
+        this.setState((prevState) => ({
+             firstName: input,
+             lastName: input2
+        }));
+    }
+
+    return (
         // Step 2: Enter email, phone number
-        return (
-            <Screen>
+        <Screen>
                 <div className="main">
                     <h1 style={{marginLeft:"0px"}}>Step 2:</h1>
                     <form className="form">
@@ -29,8 +50,6 @@ class Step2 extends React.Component {
                     </form>
                 </div>
             </Screen>
-        );
-    }
+    );
 }
- 
 export default Step2;

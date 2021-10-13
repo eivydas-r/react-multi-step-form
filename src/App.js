@@ -9,12 +9,6 @@ import { bindActionCreators } from 'redux';
 import { actionCreators } from './state/exportActions'
 
 function App() {
-  const state = useSelector((state) => state.step1);
-  console.log("state");
-  console.log(state);
-
-  const dispatch = useDispatch();
-  const { updateFirstName, updateLastName } = bindActionCreators(actionCreators, dispatch);
 
   return (
     // Create Multi step form
@@ -25,7 +19,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Link to="/steps/1">
-            <button onClick={() => updateFirstName('Jim')} className="btn btn-success signupBtn">Sign up</button>
+            <button className="btn btn-success signupBtn">Sign up</button>
           </Link>
         </Route>
 
