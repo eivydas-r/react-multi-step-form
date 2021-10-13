@@ -5,7 +5,7 @@ class Screen extends React.Component {
     render() { 
         return (
             <div className="screen-small">
-                {this.props.display}
+                {this.props.children}
             </div>
         );
     }

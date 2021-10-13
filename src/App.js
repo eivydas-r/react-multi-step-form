@@ -4,20 +4,28 @@ import Step1 from './Components/Step1/Step1';
 import Screen from './Components/Screen/Screen';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Step2 from './Components/Step2/Step2';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from './state/exportActions'
 
 function App() {
+  const state = useSelector((state) => state.step1);
+  console.log("state");
+  console.log(state);
+
+  const dispatch = useDispatch();
+  const { updateFirstName, updateLastName } = bindActionCreators(actionCreators, dispatch);
+
   return (
     // Create Multi step form
     // Step 1: Enter firstName, lastName
     // Step 2: Enter email, phone number
     // Step 3: Enter username, password
     <Router>        
-
-
       <Switch>
         <Route exact path="/">
           <Link to="/steps/1">
-            <button className="btn btn-success signupBtn">Sign up</button>
+            <button onClick={() => updateFirstName('Jim')} className="btn btn-success signupBtn">Sign up</button>
           </Link>
         </Route>
 
