@@ -12,3 +12,14 @@
     text-align: center;
     line-height: 150%;
 }
+
+.error {
+    background-color: rgb(255, 180, 145);
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#bottom {
+    margin-bottom: -20px;
+}
