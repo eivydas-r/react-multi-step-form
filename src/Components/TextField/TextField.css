@@ -1,0 +1,14 @@
+.error {
+    position: absolute;
+    color: red;
+    font-size: 14px;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+label {
+    margin-bottom: 0px;
+    margin-top: 24px;
+    font-size: 20px;
+}

@@ -13,3 +13,19 @@
   justify-content: center;
   margin-top: 25px;
 }
+
+.circle {
+  height: 10px;
+  width: 10px;
+  background-color:rgb(0, 149, 25);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  transform: translate(0px, -18px);
+}
+
+#circle-selected {
+  height: 15px;
+  width: 15px;
+  transform: translate(0px, -16px);
+}

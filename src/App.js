@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from './state/exportActions'
 import Step3 from './Components/Step3/Step3';
+import HomePage from './Components/HomePage/HomePage';
+import LoginHeader from './Components/LoginHeader/LoginHeader';
 
 function App() {
   document.title = "Multi-step Form by Eivydas"
@@ -19,21 +21,10 @@ function App() {
     // Step 3: Enter username, password
     <Router>        
       <Switch>
-        <Route exact path="/">
-          <Link to="/steps/1">
-            <button className="btn btn-success signupBtn">Sign up</button>
-          </Link>
-        </Route>
-
-        <Route path="/steps/1">
-          <Step1/>
-        </Route>
-        <Route path="/steps/2">
-          <Step2/>
-        </Route>
-        <Route path="/steps/3">
-          <Step3/>
-        </Route>
+        <Route exact path="/" component={HomePage}/>
+        <Route path="/steps/1" component={Step1}/>
+        <Route path="/steps/2" component={Step2}/>
+        <Route path="/steps/3" component={Step3}/>
       </Switch>
     </Router>
   );
