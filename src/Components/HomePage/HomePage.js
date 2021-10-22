@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { updateUsername } from '../../state/actions/actions';
+import { resetAllData, updateUsername } from '../../state/actions/actions';
 import { store } from '../../state/store';
 import LoginHeader from '../LoginHeader/LoginHeader';
 
@@ -12,7 +12,8 @@ class HomePage extends React.Component {
     // update redux without hook
     handleUpdatingData = () => {
         console.log("handleUpdatingData() called")
-        store.dispatch(updateUsername(''));
+        store.dispatch(resetAllData(''));
+        console.log(store.getState().updateData)
         this.setState({userName : ''})
         // re-renders component
     }

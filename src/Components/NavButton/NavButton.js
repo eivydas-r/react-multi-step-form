@@ -11,7 +11,7 @@ const NavButton = withRouter(({ history, ...props }) => (
           if(props.submit){
             props.submit();
           }} }
-      className="btn btn-dark mt-4 btn-lg" 
+      className="btn btn-dark mt-3 btn-lg" 
       style={{marginTop: "10px"}}
     >
       {props.children}

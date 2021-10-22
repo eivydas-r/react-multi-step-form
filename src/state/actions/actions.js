@@ -52,3 +52,12 @@ export const updatePassword = (data) => {
         })
     }
 }
+
+export const resetAllData = () => {
+    return (dispatch) => {
+            dispatch({
+            type: "RESET_DATA",
+            payload: ''
+        })
+    }
+}

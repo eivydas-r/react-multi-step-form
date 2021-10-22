@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import TextField from '../TextField/TextField';
 import NavButton from '../NavButton/NavButton';
+import { updatePassword, updateUsername } from '../../state/actions/actions';
 
 // Refactored all formik forms into class components
 // Implemented dynamic navigation button validation
@@ -34,13 +35,17 @@ class Step3 extends React.Component {
                 <div className="main">
                     <Formik
                         initialValues={{
-                            userName: '',
-                            password: '',
+                            userName: store.getState().updateData.userName,
+                            password: store.getState().updateData.password,
                             confirmPassword: '',
                         }}
                         validationSchema={validate}
                         onSubmit={values => {
                             console.log('Values',values);
+                            store.dispatch(updateUsername(values.userName));
+                            store.dispatch(updatePassword(values.password));
+                            console.log("Submitted to redux", store.getState().updateData)
+                            
                             this.props.history.push('/');
                         }}
                     >
@@ -51,15 +56,15 @@ class Step3 extends React.Component {
                                     <span class="circle"/>
                                     <span class="circle"/>
                                     <span class="circle" id="circle-selected"/>
-                                    <h1 style={{marginLeft:"0px"}}>Step 3:</h1>
+                                    <h1 style={{marginLeft:"0px"}}>Step 3</h1>
                                     <Form>
                                         <TextField label="Username:" name="userName" type="userName"/>
                                         <TextField label="Password:" name="password" type="password"/>
                                         <TextField label="Confirm password:" name="confirmPassword" type="password"/>
                                         <br/>
                                         <NavButton nav={'/steps/2'} disabled={false}>Previous</NavButton>
-                                        <button className={`btn btn-${formik.values.userName.length !== 0 && Object.keys(formik.errors).length === 0 ? 'success' : 'dark'} mt-4 ml-2 btn-lg`} type="submit">Next</button>
-                                        <button className="btn btn-danger mt-4 ml-2 btn-lg" type="reset">Reset</button>
+                                        <button className={`btn btn-${formik.values.userName.length !== 0 && Object.keys(formik.errors).length === 0 ? 'success' : 'dark'} mt-3 ml-2 btn-lg`} type="submit">Sign up</button>
+                                        <button className="btn btn-danger mt-3 ml-2 btn-lg" type="reset">Clear</button>
                                     </Form>
                                 </div>
                             </div>

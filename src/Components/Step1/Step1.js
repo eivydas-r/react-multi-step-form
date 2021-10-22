@@ -30,12 +30,17 @@ class Step1 extends React.Component {
                 <div className="main">
                     <Formik
                         initialValues={{
-                            firstName: '',
-                            lastName: '',
+                            firstName: store.getState().updateData.firstName,
+                            lastName: store.getState().updateData.lastName,
                         }}
                         validationSchema={validate}
                         onSubmit={values => {
                             console.log('Values',values);
+                            // update store data upon submission  
+                            store.dispatch(updateFirstName(values.firstName));
+                            store.dispatch(updateLastName(values.lastName));
+                            console.log("Submitted to redux", store.getState().updateData)
+                            
                             this.props.history.push('/steps/2');
                         }}
                     >
@@ -46,13 +51,14 @@ class Step1 extends React.Component {
                                     <span class="circle" id="circle-selected"/>
                                     <span class="circle"/>
                                     <span class="circle"/>
-                                    <h1 style={{marginLeft:"0px"}}>Step 1:</h1>
+                                    <h1 style={{marginLeft:"0px"}}>Step 1</h1>
                                     <Form>
                                         <TextField label="First name:" name="firstName" type="text"/>
                                         <TextField label="Last name:" name="lastName" type="text"/>
                                         <br/>
-                                        <button className={`btn btn-${formik.values.firstName.length !== 0 && Object.keys(formik.errors).length === 0 ? 'success' : 'dark'} mt-4 ml-2 btn-lg`} type="submit">Next</button>
-                                        <button className="btn btn-danger mt-4 ml-2 btn-lg" type="reset">Reset</button>
+                                        <NavButton nav={'/'} disabled={false}>Cancel</NavButton>
+                                        <button className={`btn btn-${formik.values.firstName.length !== 0 && Object.keys(formik.errors).length === 0 ? 'success' : 'dark'} mt-3 ml-2 btn-lg`} type="submit">Next</button>
+                                        <button className="btn btn-danger mt-3 ml-2 btn-lg" type="reset">Reset</button>
                                     </Form>
                                 </div>
                             </div>
